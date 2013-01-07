@@ -12,14 +12,20 @@
 	See the GNU General Public License for more details.
 
 	To get a copy of the GNU General Public License see <http://www.gnu.org/licenses/>.
+
+	Modified 27 December 2012 by Diegowa
 */
-#ifndef CRC16_h
-#define CRC16_h
+
+#ifndef CRC16_H
+#define CRC16_H
+
 #include "Arduino.h"
+
 class CRC
 {
 	public:
 		CRC();
-		unsigned short CRC16(unsigned char *puchMsg,unsigned short usDataLen);
+		uint16_t CRC16(uint8_t *puchMsg, uint16_t usDataLen);
 };
+
 #endif
