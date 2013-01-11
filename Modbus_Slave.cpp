@@ -80,6 +80,8 @@ void ModBusSlave::Configure(const long baud_rate, const int8_t parity, const uin
         digitalWrite(txenpin, LOW);
     }
 
+    Serial.end();
+    delay(500);
     Serial.begin(baud_rate);  // Open Serial port at Defined Baudrate
 }
 
@@ -391,7 +393,7 @@ void ModBusSlave::Read_Coils(uint8_t *Data_In)  // Function code 1
     }
 
     uint16_t Item = 3;
-    for(int Bit = 0; Bit < Bit_Count; Bit++)
+    for (int Bit = 0; Bit < Bit_Count; Bit++)
     {
         Working_Byte = Working_Byte | ((_coils[Address/16]>>(Address&0x000f))<<Sub_Bit_Count);
         Address++;
@@ -406,7 +408,7 @@ void ModBusSlave::Read_Coils(uint8_t *Data_In)  // Function code 1
         }
     }
     //If not a full byte of info
-    if(Sub_Bit_Count != 0) {
+    if (Sub_Bit_Count != 0) {
         Data_In[Item] = Working_Byte;
         Working_Byte = 0;
         Sub_Bit_Count=0;
